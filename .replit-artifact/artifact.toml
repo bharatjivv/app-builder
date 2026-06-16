@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "App Graph Builder"
+version = "1.0.0"
+id = "artifacts/app-graph"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19784
+
+[services.development]
+run = "pnpm --filter @workspace/app-graph run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/app-graph", "run", "build" ]
+publicDir = "artifacts/app-graph/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19784"
+BASE_PATH = "/"
