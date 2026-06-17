@@ -2,7 +2,7 @@ export type NodeStatus = "Healthy" | "Degraded" | "Down";
 export type NodeType = "service" | "database";
 export type InspectorTab = "Config" | "Runtime";
 
-export interface NodeData {
+export interface NodeData extends Record<string, unknown> {
   label: string;
   description?: string;
   status: NodeStatus;
